@@ -233,7 +233,7 @@ const handleCardMouseLeave = () => {
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <a href="#home" className="brand">
           <Image
-            src="/zowexo-web/NEWLOGO1.PNG"
+            src="/zowexo-web/NEWLOGo1.PNG"
             alt="Zowexo Global"
             width={190}
             height={70}
@@ -610,7 +610,7 @@ const handleCardMouseLeave = () => {
   {/* Company */}
   <div className="footer-logo-wrap">
   <img
-    src="/zowexo-web/NEWLOGO.PNG"
+    src="/NEWLOGO.PNG"
     alt="Zowexo Global"
     className="footer-logo"
   />
