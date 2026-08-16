@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRef } from "react";
+
 
 const products = [
   {
@@ -32,6 +34,191 @@ const process = [
 ];
 
 export default function Home() {
+
+  useEffect(() => {
+  /* =========================================
+     GLOBAL MOUSE TRACKING
+     ========================================= */
+
+  const handleMouseMove = (e: MouseEvent) => {
+    document.documentElement.style.setProperty(
+      "--mouse-x",
+      `${e.clientX}px`
+    );
+
+    document.documentElement.style.setProperty(
+      "--mouse-y",
+      `${e.clientY}px`
+    );
+
+    /* =========================================
+       IMAGE PARALLAX
+       ========================================= */
+
+    const parallaxImages =
+      document.querySelectorAll<HTMLElement>("[data-parallax]");
+
+    parallaxImages.forEach((element) => {
+      const speed = Number(element.dataset.parallax) || 0.02;
+
+      const rect = element.getBoundingClientRect();
+
+      const x =
+        (e.clientX - (rect.left + rect.width / 2)) * speed;
+
+      const y =
+        (e.clientY - (rect.top + rect.height / 2)) * speed;
+
+      element.style.setProperty(
+        "--parallax-x",
+        `${x}px`
+      );
+
+      element.style.setProperty(
+        "--parallax-y",
+        `${y}px`
+      );
+    });
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+
+  /* =========================================
+     SCROLL REVEAL
+     ========================================= */
+
+  const revealElements =
+    document.querySelectorAll<HTMLElement>("[data-reveal]");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+    }
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
+
+  /* =========================================
+     MAGNETIC BUTTONS
+     ========================================= */
+
+  const magneticElements =
+    document.querySelectorAll<HTMLElement>("[data-magnetic]");
+
+  const magneticHandlers = new Map<
+    HTMLElement,
+    (event: MouseEvent) => void
+  >();
+
+  magneticElements.forEach((element) => {
+    const handler = (event: MouseEvent) => {
+      const rect = element.getBoundingClientRect();
+
+      const x =
+        event.clientX -
+        (rect.left + rect.width / 2);
+
+      const y =
+        event.clientY -
+        (rect.top + rect.height / 2);
+
+      const strength = 0.15;
+
+      element.style.setProperty(
+        "--magnetic-x",
+        `${x * strength}px`
+      );
+
+      element.style.setProperty(
+        "--magnetic-y",
+        `${y * strength}px`
+      );
+    };
+
+    magneticHandlers.set(element, handler);
+
+    element.addEventListener("mousemove", handler);
+  });
+
+  /* =========================================
+     CLEANUP
+     ========================================= */
+
+  return () => {
+    window.removeEventListener(
+      "mousemove",
+      handleMouseMove
+    );
+
+    revealObserver.disconnect();
+
+    magneticElements.forEach((element) => {
+      const handler = magneticHandlers.get(element);
+
+      if (handler) {
+        element.removeEventListener(
+          "mousemove",
+          handler
+        );
+      }
+    });
+  };
+}, []);
+
+  useEffect(() => {
+  const handleMouseMove = (e: MouseEvent) => {
+    document.documentElement.style.setProperty(
+      "--mouse-x",
+      `${e.clientX}px`
+    );
+
+    document.documentElement.style.setProperty(
+      "--mouse-y",
+      `${e.clientY}px`
+    );
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+  };
+}, []);
+
+  const cardRef = useRef<HTMLDivElement>(null);
+
+const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const card = cardRef.current;
+
+  if (!card) return;
+
+  const rect = card.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  card.style.setProperty("--mouse-x", `${x}px`);
+  card.style.setProperty("--mouse-y", `${y}px`);
+};
+
+const handleCardMouseLeave = () => {
+  const card = cardRef.current;
+
+  if (!card) return;
+
+  card.style.setProperty("--mouse-x", "50%");
+  card.style.setProperty("--mouse-y", "50%");
+};
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -46,7 +233,7 @@ export default function Home() {
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <a href="#home" className="brand">
           <Image
-            src="/NEWLOGO1.PNG"
+            src="/zowexo-web/NEWLOGO1.PNG"
             alt="Zowexo Global"
             width={190}
             height={70}
@@ -69,6 +256,60 @@ export default function Home() {
 
       {/* HERO */}
       <section id="home" className="hero">
+<div className="zowexo-premium-shipping-line" aria-hidden="true">
+  <span className="shipping-line-pulse"></span>
+</div>
+
+
+        <div className="zowexo-shipping-animation" aria-hidden="true">
+  <div className="shipping-track-line"></div>
+
+  <div className="shipping-ship">
+    <span className="ship-container"></span>
+    <span className="ship-container"></span>
+    <span className="ship-container"></span>
+  </div>
+</div>
+
+<div className="zowexo-trade-network" aria-hidden="true">
+  <div className="trade-network-node supplier-node">
+    <span className="network-dot"></span>
+    <span>Supplier</span>
+  </div>
+
+  <div className="trade-network-line">
+    <span className="network-light"></span>
+  </div>
+
+  <div className="trade-network-node zowexo-node">
+    <span className="network-dot"></span>
+    <span>ZOWEXO</span>
+  </div>
+
+  <div className="trade-network-line">
+    <span className="network-light"></span>
+  </div>
+
+  <div className="trade-network-node buyer-node">
+    <span className="network-dot"></span>
+    <span>Global Buyer</span>
+  </div>
+</div>
+
+        <div className="zowexo-trade-background" aria-hidden="true">
+  <div className="zowexo-trade-route route-a">
+    <span className="zowexo-trade-light"></span>
+  </div>
+
+  <div className="zowexo-trade-route route-b">
+    <span className="zowexo-trade-light"></span>
+  </div>
+
+  <span className="zowexo-trade-point trade-point-a"></span>
+  <span className="zowexo-trade-point trade-point-b"></span>
+  <span className="zowexo-trade-point trade-point-c"></span>
+</div>
+
         <div className="hero-glow hero-glow-one" />
         <div className="hero-glow hero-glow-two" />
 
@@ -99,23 +340,42 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="hero-trust reveal reveal-delay-4">
-            <span>Requirement-led sourcing</span>
-            <i />
-            <span>Global export coordination</span>
-            <i />
-            <span>Buyer focused</span>
-          </div>
+         <div className="hero-trust reveal reveal-delay-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+  <span className="inline-flex items-center gap-2 cursor-pointer transition-all duration-500 ease-out hover:scale-[1.06] hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]">
+    <span className="text-[0.6em]">•</span>
+    Requirement-led sourcing
+  </span>
+
+  <span className="inline-flex items-center gap-2 cursor-pointer transition-all duration-500 ease-out hover:scale-[1.06] hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]">
+    <span className="text-[0.6em]">•</span>
+    Global export coordination
+  </span>
+
+  <span className="inline-flex items-center gap-2 cursor-pointer transition-all duration-500 ease-out hover:scale-[1.06] hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]">
+    <span className="text-[0.6em]">•</span>
+    Buyer focused
+  </span>
+</div>
         </div>
 
         <div className="hero-visual">
           <div className="hero-image" />
           <div className="hero-image-overlay" />
+          <div className="hero-image-reveal" />
 
-          <div className="hero-card">
+          <div
+  ref={cardRef}
+  className="hero-card"
+  onMouseMove={handleCardMouseMove}
+  onMouseLeave={handleCardMouseLeave}
+>
             <small>ZOWEXO GLOBAL</small>
-            <strong>Sourcing beyond borders.</strong>
-            <span>Built around your requirements.</span>
+            <strong className="hero-text-reveal title">
+  Sourcing beyond borders.
+</strong>
+            <span className="hero-text-reveal description">
+  Built around your requirements.
+</span>
           </div>
         </div>
 
@@ -127,25 +387,25 @@ export default function Home() {
 
       {/* TRUST STRIP */}
       <section className="trust-strip">
-        <div>
-          <strong>Buyer First</strong>
-          <span>Requirements come first</span>
-        </div>
+       <div className="trust-item">
+  <strong>Buyer First</strong>
+  <span>Requirements come first</span>
+</div>
 
-        <div>
-          <strong>Flexible Sourcing</strong>
-          <span>Built around your needs</span>
-        </div>
+<div className="trust-item">
+  <strong>Flexible Sourcing</strong>
+  <span>Built around your needs</span>
+</div>
 
-        <div>
-          <strong>Quality Focus</strong>
-          <span>Specifications matter</span>
-        </div>
+<div className="trust-item">
+  <strong>Quality Focus</strong>
+  <span>Specifications matter</span>
+</div>
 
-        <div>
-          <strong>Global Reach</strong>
-          <span>Export coordination</span>
-        </div>
+<div className="trust-item">
+  <strong>Global Reach</strong>
+  <span>Export coordination</span>
+</div>
       </section>
 
       {/* ABOUT */}
@@ -348,13 +608,13 @@ export default function Home() {
 <footer className="footer">
 
   {/* Company */}
-  <div className="footer-column footer-company">
-    <img
-      src="/NEWLOGO.PNG"
-      alt="Zowexo Global"
-      className="footer-logo"
-    />
-
+  <div className="footer-logo-wrap">
+  <img
+    src="/zowexo-web/NEWLOGO.PNG"
+    alt="Zowexo Global"
+    className="footer-logo"
+  />
+</div>
     <p>
       Global sourcing & export.
     </p>
@@ -363,7 +623,7 @@ export default function Home() {
       Connecting reliable suppliers to trusted buyers
       worldwide.
     </p>
-  </div>
+  
 
 
   {/* Navigation */}
