@@ -3,7 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-
+import GlobalTradeGlobe from "./components/GlobalTradeGlobe";
+import FloatingExportProducts from "./components/FloatingExportProducts";
+import ZowexoEntrance from "./components/ZowexoEntrance";
 
 const products = [
   {
@@ -229,6 +231,10 @@ const handleCardMouseLeave = () => {
 
   return (
     <main className="zowexo-site">
+      <ZowexoEntrance />
+      
+
+      <FloatingExportProducts />
       {/* NAVBAR */}
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <a href="#home" className="brand">
@@ -604,6 +610,43 @@ const handleCardMouseLeave = () => {
         </div>
       </section>
 
+      {/* GLOBAL TRADE GLOBE */}
+<section className="global-globe-section">
+  <div className="global-globe-heading">
+    <span> ZOWEXO GLOBAL NETWORK </span>
+
+    <h2>
+      Connecting Markets.
+      <br />
+      <strong>Moving Possibilities.</strong>
+    </h2>
+
+    <p>
+      From trusted suppliers to global buyers,
+      <br />
+      Zowexo connects opportunities across borders.
+    </p>
+  </div>
+
+  <GlobalTradeGlobe />
+
+  <div className="global-globe-regions">
+    <span>INDIA</span>
+    <i>•</i>
+    <span>UAE</span>
+    <i>•</i>
+    <span>EUROPE</span>
+    <i>•</i>
+    <span>ASIA</span>
+    <i>•</i>
+    <span>AFRICA</span>
+    <i>•</i>
+    <span>AUSTRALIA</span>
+    <i>•</i>
+    <span>AMERICAS</span>
+  </div>
+</section>
+
       {/* FOOTER */}
 <footer className="footer">
 
@@ -638,7 +681,7 @@ const handleCardMouseLeave = () => {
 
 
   {/* Contact */}
-  <div className="footer-column">
+  <div className="-column">
     <h3>Reach Us</h3>
 
     <p>📍 Wayanad , Kerala, India</p>
