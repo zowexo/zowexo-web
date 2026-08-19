@@ -109,47 +109,7 @@ export default function Home() {
     revealObserver.observe(element);
   });
 
-  /* =========================================
-     MAGNETIC BUTTONS
-     ========================================= */
-
-  const magneticElements =
-    document.querySelectorAll<HTMLElement>("[data-magnetic]");
-
-  const magneticHandlers = new Map<
-    HTMLElement,
-    (event: MouseEvent) => void
-  >();
-
-  magneticElements.forEach((element) => {
-    const handler = (event: MouseEvent) => {
-      const rect = element.getBoundingClientRect();
-
-      const x =
-        event.clientX -
-        (rect.left + rect.width / 2);
-
-      const y =
-        event.clientY -
-        (rect.top + rect.height / 2);
-
-      const strength = 0.15;
-
-      element.style.setProperty(
-        "--magnetic-x",
-        `${x * strength}px`
-      );
-
-      element.style.setProperty(
-        "--magnetic-y",
-        `${y * strength}px`
-      );
-    };
-
-    magneticHandlers.set(element, handler);
-
-    element.addEventListener("mousemove", handler);
-  });
+  
 
   /* =========================================
      CLEANUP
@@ -162,18 +122,7 @@ export default function Home() {
     );
 
     revealObserver.disconnect();
-
-    magneticElements.forEach((element) => {
-      const handler = magneticHandlers.get(element);
-
-      if (handler) {
-        element.removeEventListener(
-          "mousemove",
-          handler
-        );
-      }
-    });
-  };
+  }
 }, []);
 
   useEffect(() => {
