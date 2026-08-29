@@ -38,52 +38,7 @@ const process = [
 export default function Home() {
 
   useEffect(() => {
-  /* =========================================
-     GLOBAL MOUSE TRACKING
-     ========================================= */
-
-  const handleMouseMove = (e: MouseEvent) => {
-    document.documentElement.style.setProperty(
-      "--mouse-x",
-      `${e.clientX}px`
-    );
-
-    document.documentElement.style.setProperty(
-      "--mouse-y",
-      `${e.clientY}px`
-    );
-
-    /* =========================================
-       IMAGE PARALLAX
-       ========================================= */
-
-    const parallaxImages =
-      document.querySelectorAll<HTMLElement>("[data-parallax]");
-
-    parallaxImages.forEach((element) => {
-      const speed = Number(element.dataset.parallax) || 0.02;
-
-      const rect = element.getBoundingClientRect();
-
-      const x =
-        (e.clientX - (rect.left + rect.width / 2)) * speed;
-
-      const y =
-        (e.clientY - (rect.top + rect.height / 2)) * speed;
-
-      element.style.setProperty(
-        "--parallax-x",
-        `${x}px`
-      );
-
-      element.style.setProperty(
-        "--parallax-y",
-        `${y}px`
-      );
-    });
-  };
-
-  window.addEventListener("mousemove", handleMouseMove);
+  
 
   /* =========================================
      SCROLL REVEAL
@@ -116,34 +71,15 @@ export default function Home() {
      ========================================= */
 
   return () => {
-    window.removeEventListener(
-      "mousemove",
-      handleMouseMove
-    );
+    
 
     revealObserver.disconnect();
-  }
-}, []);
 
-  useEffect(() => {
-  const handleMouseMove = (e: MouseEvent) => {
-    document.documentElement.style.setProperty(
-      "--mouse-x",
-      `${e.clientX}px`
-    );
-
-    document.documentElement.style.setProperty(
-      "--mouse-y",
-      `${e.clientY}px`
-    );
-  };
-
-  window.addEventListener("mousemove", handleMouseMove);
-
-  return () => {
-    window.removeEventListener("mousemove", handleMouseMove);
+    
   };
 }, []);
+
+  
 
   const cardRef = useRef<HTMLDivElement>(null);
 

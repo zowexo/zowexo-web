@@ -1373,31 +1373,37 @@ top: auto;
 /* Soft glow following the mouse */
 .hero-card::before {
   content: "";
+
   position: absolute;
 
-  width: 260px;
-  height: 260px;
+  width: 150px;
+  height: 150px;
 
   left: var(--mouse-x, 50%);
   top: var(--mouse-y, 50%);
 
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 
   background: radial-gradient(
     circle,
-    rgba(255, 220, 120, 0.18) 0%,
-    rgba(255, 220, 120, 0.08) 30%,
-    transparent 70%
+    rgba(255, 220, 120, 0.16) 0%,
+    rgba(255, 220, 120, 0.07) 35%,
+    rgba(255, 220, 120, 0) 70%
   );
 
-  filter: blur(20px);
+  filter: blur(10px);
 
   opacity: 0;
-  transition: opacity 500ms ease;
+
+  transition: opacity 180ms ease;
 
   pointer-events: none;
-  z-index: -1;
+
+  z-index: 0;
+
+  will-change: left, top, transform;
 }
+
 
 /* Premium light sweep */
 .hero-card::after {
@@ -1485,18 +1491,7 @@ top: auto;
   color: rgba(255, 255, 255, 0.90);
 }
 
-/* =========================================
-   GLOBAL PREMIUM MOUSE GLOW
-   ========================================= */
 
-html {
-  --mouse-x: 50vw;
-  --mouse-y: 50vh;
-}
-
-body {
-  position: relative;
-}
 
 /* Soft light that follows the cursor */
 body::after {
