@@ -249,10 +249,9 @@ const handleCardMouseLeave = () => {
 </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="hero-image" />
-          <div className="hero-image-overlay" />
-          <div className="hero-image-reveal" />
+        <div className="hero-visual hero-visual-background">
+  
+  <div className="hero-image-reveal" />
 
           <div
   ref={cardRef}
