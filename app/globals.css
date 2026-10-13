@@ -135,31 +135,27 @@ textarea {
 ========================= */
 
 .hero {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    padding: 150px 5.5vw 90px;
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(42, 15, 26, 0.98) 0%,
-            rgba(42, 15, 26, 0.88) 34%,
-            rgba(42, 15, 26, 0.35) 58%,
-            rgba(42, 15, 26, 0.05) 100%
-        ),
-        url("/global-trade.png") center center / cover no-repeat,
-        var(--burgundy-dark);
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 60px;
+  padding: 150px 7vw 90px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 78% 30%,
+      rgba(107, 19, 35, 0.55),
+      transparent 32%
+    ),
+    var(--burgundy-dark);
 }
 
 .hero-content {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 760px;
+  position: relative;
+  z-index: 3;
+  max-width: 760px;
 }
 
 .eyebrow,
@@ -181,16 +177,16 @@ textarea {
 }
 
 .hero-title {
-    font-size: clamp(42px, 5.5vw, 84px);
-    line-height: 1.02;
-    font-weight: 750;
-    letter-spacing: -0.045em;
-    color: #ffffff;
-    max-width: 780px;
+  margin: 28px 0 0;
+  max-width: 850px;
+  font-size: clamp(48px, 6vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 600;
 }
 
 .hero-title span {
-    color: #f4d995;
+  color: var(--champagne);
 }
 
 .hero-description {
@@ -245,38 +241,32 @@ textarea {
   background: var(--champagne);
 }
 
-/* Full-width hero background */
 .hero-visual {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  animation: none;
+  position: relative;
+  height: 650px;
+  animation: visualFloat 8s ease-in-out infinite;
 }
 
-/* Background image */
 .hero-image {
   position: absolute;
-  inset: 0;
-  border-radius: 0;
-  background-image: url("/global-trade.png");
+  inset: 20px 0 20px 35px;
+  border-radius: 35px;
+  background-image: url("https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=1400&q=85");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
 }
 
 .hero-image-overlay {
   position: absolute;
   inset: 20px 0 20px 35px;
   border-radius: 35px;
-  background: linear-gradient(
-    90deg,
-    rgba(42, 15, 32, 0.05) 0%,
-    rgba(42, 15, 32, 0.15) 50%,
-    rgba(42, 15, 32, 0.35) 100%
-  );
-  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(42, 15, 20, 0.05),
+      rgba(42, 15, 20, 0.85)
+    ),
+    linear-gradient(90deg, rgba(42, 15, 20, 0.35), transparent);
 }
 
 .hero-card {
@@ -3004,46 +2994,4 @@ body::after {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   letter-spacing: -0.035em;
-}
-/* Zowexo Global - Full Background Hero */
-
-.hero-visual-background {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  animation: none;
-  pointer-events: none;
-}
-
-.hero-visual-background .hero-image {
-  position: absolute;
-  inset: 0;
-  border-radius: 0;
-  background-image: url("/global-trade.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.hero-visual-background .hero-image-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(42, 15, 32, 0.96) 0%,
-    rgba(62, 20, 43, 0.82) 38%,
-    rgba(62, 20, 43, 0.35) 70%,
-    rgba(42, 15, 32, 0.10) 100%
-  );
-}
-
-.hero-visual-background .hero-image-reveal {
-  display: none;
-}
-
-.hero-visual-background .hero-card {
-  display: none;
 }
