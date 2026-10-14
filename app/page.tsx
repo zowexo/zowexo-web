@@ -147,19 +147,6 @@ const handleCardMouseLeave = () => {
 
       {/* HERO */}
       <section id="home" className="hero">
-        <div className="zowexo-vehicles">
-  <div className="vehicle-airplane">
-    <img src="/vehicles/airplane.PNG" alt="" />
-  </div>
-
-  <div className="vehicle-ship">
-    <img src="/vehicles/ship.PNG" alt="" />
-  </div>
-
-  <div className="vehicle-truck">
-    <img src="/vehicles/truck.PNG" alt="" />
-  </div>
-</div>
 <div className="zowexo-premium-shipping-line" aria-hidden="true">
   <span className="shipping-line-pulse"></span>
 </div>
@@ -262,10 +249,10 @@ const handleCardMouseLeave = () => {
 </div>
         </div>
 
-        <div className="hero-visual hero-visual-background">
-    <div className="hero-image" />
-    <div className="hero-image-overlay" />
-    <div className="hero-image-reveal" />
+        <div className="hero-visual">
+          <div className="hero-image" />
+          <div className="hero-image-overlay" />
+          <div className="hero-image-reveal" />
 
           <div
   ref={cardRef}
