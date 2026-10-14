@@ -3126,3 +3126,9 @@ body::after {
     filter: none;
   }
 }
+/* Hide vehicle PNG images on mobile screens only */
+@media screen and (max-width: 768px) {
+  .hero-visual img {
+    display: none !important;
+  }
+}
