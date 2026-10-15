@@ -116,6 +116,18 @@ const handleCardMouseLeave = () => {
 
   return (
     <main className="zowexo-site">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Zowexo Global",
+            alternateName: "Zowexo",
+            url: "https://www.zowexoglobal.com/",
+          }),
+        }}
+      />
       <ZowexoEntrance />
       
 
@@ -209,6 +221,7 @@ const handleCardMouseLeave = () => {
             GLOBAL SOURCING • IMPORT • EXPORT
           </div>
 
+          <p className="hero-brand-name">Zowexo Global</p>
           <h1 className="hero-title reveal reveal-delay-1">
             Your requirement.
             <span> Our global reach.</span>

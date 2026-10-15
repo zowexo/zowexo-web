@@ -19,9 +19,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.zowexoglobal.com"),
   title: "Zowexo Global | Global Sourcing & Export",
   description:
-    "Zowexo Global connects international buyers with suppliers through requirement-led sourcing and export coordination.",
+    "Zowexo Global connects international buyers with suppliers through requirement-led sourcing, including spices, fresh produce and tailored export solutions.",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
